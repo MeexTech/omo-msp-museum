@@ -1,0 +1,61 @@
+syntax = "proto3";
+
+package omo.msp.museum;
+option go_package= "proto/museum;omo_msp_museum";
+import "proto/museum/common.proto";
+
+//展位
+service BoothService {
+  rpc AddOne(ReqBoothAdd) returns (ReplyBoothInfo) {}
+  rpc GetOne(RequestInfo) returns (ReplyBoothInfo) {}
+  rpc RemoveOne(RequestInfo) returns (ReplyInfo) {}
+  rpc Search(RequestInfo) returns (ReplyBoothList) {}
+  rpc GetListByFilter(RequestFilter) returns (ReplyBoothList) {}
+  rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
+  rpc UpdateBase(ReqBoothUpdate) returns (ReplyInfo) {}
+  rpc UpdateByFilter(RequestUpdate) returns (ReplyInfo) {}
+}
+
+message BoothInfo {
+  uint64 id = 1;
+  string uid = 2;
+  string name = 3;
+  uint64 created = 4;
+  uint64 updated = 5;
+  string creator = 6;
+  string operator = 7;
+  string remark = 8;
+  string owner = 9; //所属场景
+  string parent = 10; //所属区域
+  string exhibit = 11;
+  PositionInfo position = 12;
+}
+
+message ReqBoothAdd {
+  string owner = 1;
+  string name = 2;
+  string remark = 3;
+  string parent = 4;
+  string operator = 5;
+}
+
+message ReqBoothUpdate {
+  string uid = 1;
+  string name = 2;
+  string operator = 3;
+  string remark = 4;
+}
+
+message ReplyBoothInfo {
+  BoothInfo info = 1;
+  ReplyStatus status = 2;
+}
+
+message ReplyBoothList {
+  uint32 total = 1;
+  uint32 pages = 2;
+  uint32 page = 3;
+  uint32 number = 4;
+  ReplyStatus status = 5;
+  repeated BoothInfo list = 6;
+}

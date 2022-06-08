@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package omo.msp.museum;
+option go_package= "proto/museum;omo_msp_museum";
+import "proto/museum/common.proto";
+
+//展区
+service AreaService {
+  rpc AddOne(ReqAreaAdd) returns (ReplyAreaInfo) {}
+  rpc GetOne(RequestInfo) returns (ReplyAreaInfo) {}
+  rpc RemoveOne(RequestInfo) returns (ReplyInfo) {}
+  rpc Search(RequestInfo) returns (ReplyAreaList) {}
+  rpc GetListByFilter(RequestFilter) returns (ReplyAreaList) {}
+  rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
+  rpc UpdateBase(ReqAreaBase) returns (ReplyInfo) {}
+  rpc UpdateByFilter(RequestUpdate) returns (ReplyInfo) {}
+}
+
+message AreaInfo {
+  uint64 id = 1;
+  string uid = 2;
+  string name = 3;
+  uint64 created = 4;
+  uint64 updated = 5;
+  string creator = 6;
+  string operator = 7;
+  string remark = 8;
+  string owner = 9;
+  string parent = 10;
+}
+
+message ReqAreaAdd {
+  string owner = 1;
+  string name = 2;
+  string remark = 3;
+  string parent = 4;
+  string operator = 5;
+}
+
+message ReqAreaBase {
+  string uid = 1;
+  string name = 2;
+  string remark = 3;
+}
+
+message ReplyAreaInfo {
+  AreaInfo info = 1;
+  ReplyStatus status = 2;
+}
+
+message ReplyAreaList {
+  uint32 total = 1;
+  uint32 page = 2;
+  uint32 pages = 3;
+  uint32 number = 4;
+  repeated AreaInfo list = 5;
+  ReplyStatus status = 6;
+}

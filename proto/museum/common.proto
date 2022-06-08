@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package omo.msp.museum;
+option go_package= "proto/museum;omo_msp_museum";
+
+message RequestInfo {
+  string uid = 1;
+  string flag = 2;
+  string operator = 3;
+  string name = 4;
+  string user = 5;
+}
+
+message IdentifyInfo{
+  string user = 1;
+  string name = 2;
+  string remark = 3;
+}
+
+message PositionInfo{
+  float x = 1;
+  float y = 2;
+}
+
+message LocalInfo{
+  string language = 1;
+  string name = 2;
+  string remark = 3;
+}
+
+message RequestFilter {
+  string owner = 1;
+  string key = 2;
+  string value = 3;
+  uint32 page = 4;
+  uint32 number = 5;
+  string operator = 6;
+  repeated string values = 7;
+}
+
+message RequestUpdate{
+  string owner = 1;
+  string uid = 2;
+  string key = 3;
+  string value = 4;
+  string operator = 5;
+  repeated string values = 6;
+}
+
+message ReplyStatus {
+  uint32 code = 1;
+  string error = 2;
+}
+
+message ReplyInfo {
+  string uid = 1;
+  ReplyStatus status = 2;
+}
+
+message DateInfo{
+  string begin = 1;
+  string end = 2;
+}
+
+message RequestAddress{
+  string uid = 1;
+  string country = 2;
+  string province = 3;
+  string city = 4;
+  string zone = 5;
+  string location = 6;
+  string operator = 7;
+}
+
+message RequestIntFlag{
+  string uid = 1;
+  int32 flag = 2;
+  string operator = 3;
+}
+
+message RequestList{
+  string uid = 1;
+  string operator = 2;
+  repeated string list = 3;
+}
+
+message ReplyList {
+  string uid = 1;
+  repeated string list = 2;
+  ReplyStatus status = 3;
+}
+
+message ReplyStatistic {
+  ReplyStatus status = 1;
+  string key = 2;
+  string owner = 3;
+  uint32 count = 4;
+}

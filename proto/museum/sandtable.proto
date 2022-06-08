@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package omo.msp.museum;
+option go_package= "proto/museum;omo_msp_museum";
+import "proto/museum/common.proto";
+
+//沙盘
+service SandtableService {
+  rpc AddOne(ReqSandtableAdd) returns (ReplySandtableInfo) {}
+  rpc GetOne(RequestInfo) returns (ReplySandtableInfo) {}
+  rpc RemoveOne(RequestInfo) returns (ReplyInfo) {}
+  rpc Search(RequestInfo) returns (ReplySandtableList) {}
+  rpc GetListByFilter(RequestFilter) returns (ReplySandtableList) {}
+  rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
+  rpc UpdateBase(ReqSandtableBase) returns (ReplyInfo) {}
+  rpc UpdateBackground(ReqSandtableBG) returns (ReplyInfo) {}
+  rpc UpdateByFilter(RequestUpdate) returns (ReplyInfo) {}
+}
+
+message SandtableInfo {
+  uint64 id = 1;
+  string uid = 2;
+  string name = 3;
+  uint64 created = 4;
+  uint64 updated = 5;
+  string creator = 6;
+  string operator = 7;
+  string remark = 8;
+  string owner = 9; //所属场景
+  string background = 10; //背景图片
+  string mask = 11; //
+  uint32 width = 12;
+  uint32 height = 13;
+  string narrate = 14; //讲解音频
+  string bgm = 15; //背景音乐
+}
+
+message ReqSandtableAdd {
+  string owner = 1;
+  string name = 2;
+  string remark = 3;
+  string operator = 4;
+  string background = 5;
+  uint32 width = 6;
+  uint32 height = 7;
+}
+
+message ReqSandtableBase {
+  string uid = 1;
+  string name = 2;
+  string operator = 3;
+  string remark = 4;
+}
+
+message ReqSandtableBG {
+  string uid = 1;
+  string asset = 2;
+  string operator = 3;
+  uint32 width = 4;
+  uint32 height = 5;
+}
+
+message ReplySandtableInfo {
+  SandtableInfo info = 1;
+  ReplyStatus status = 2;
+}
+
+message ReplySandtableList {
+  uint32 total = 1;
+  uint32 pages = 2;
+  uint32 page = 3;
+  uint32 number = 4;
+  ReplyStatus status = 5;
+  repeated SandtableInfo list = 6;
+}

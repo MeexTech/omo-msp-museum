@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package omo.msp.museum;
+option go_package= "proto/museum;omo_msp_museum";
+import "proto/museum/common.proto";
+
+//展品
+service ExhibitService {
+  rpc AddOne(ReqExhibitAdd) returns (ReplyExhibitInfo) {}
+  rpc GetOne(RequestInfo) returns (ReplyExhibitInfo) {}
+  rpc RemoveOne(RequestInfo) returns (ReplyInfo) {}
+  rpc Search(RequestInfo) returns (ReplyExhibitList) {}
+  rpc GetListByFilter(RequestFilter) returns (ReplyExhibitList) {}
+  rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
+  rpc UpdateLocals(ReqExhibitLocals) returns (ReplyInfo) {}
+  rpc UpdateSpecials(ReqExhibitSpecials) returns (ReplyInfo) {}
+  rpc UpdateByFilter(RequestUpdate) returns (ReplyInfo) {}
+}
+
+message ExhibitInfo {
+  uint64 id = 1;
+  string uid = 2;
+  string name = 3;
+  uint64 created = 4;
+  uint64 updated = 5;
+  string creator = 6;
+  string operator = 7;
+  string sn = 8;
+  string owner = 9; //所属场景
+  string entity = 11;
+  repeated LocalInfo locals = 12;
+  repeated SpecialInfo specials = 13;
+}
+
+message SpecialInfo {
+  uint32 id = 1;
+  string key = 2;
+  string value = 3;
+}
+
+message ReqExhibitAdd {
+  string owner = 1;
+  string name = 2;
+  string remark = 3;
+  string operator = 4;
+  string entity = 5;
+  string sn = 6;
+}
+
+message ReqExhibitLocals {
+  string uid = 1;
+  string operator = 2;
+  repeated LocalInfo locals = 3;
+}
+
+message ReqExhibitSpecials {
+  string uid = 1;
+  string operator = 2;
+  repeated SpecialInfo specials = 3;
+}
+
+message ReplyExhibitInfo {
+  ExhibitInfo info = 1;
+  ReplyStatus status = 2;
+}
+
+message ReplyExhibitList {
+  uint32 total = 1;
+  uint32 pages = 2;
+  uint32 page = 3;
+  uint32 number = 4;
+  ReplyStatus status = 5;
+  repeated ExhibitInfo list = 6;
+}

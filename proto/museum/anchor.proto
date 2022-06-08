@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package omo.msp.museum;
+option go_package= "proto/museum;omo_msp_museum";
+import "proto/museum/common.proto";
+
+//地图锚点
+service AnchorService {
+  rpc AddOne(ReqAnchorAdd) returns (ReplyAnchorOne) {}
+  rpc GetOne(RequestInfo) returns (ReplyAnchorOne) {}
+  rpc RemoveOne(RequestInfo) returns (ReplyInfo) {}
+  rpc Search(RequestInfo) returns (ReplyAnchorList) {}
+  rpc GetListByFilter(RequestFilter) returns (ReplyAnchorList) {}
+  rpc GetStatistic(RequestFilter) returns (ReplyStatistic) {}
+  rpc UpdateBase(ReqAnchorUpdate) returns (ReplyInfo) {}
+  rpc UpdateByFilter(RequestUpdate) returns (ReplyInfo) {}
+}
+
+message AnchorInfo {
+  string uid = 1;
+  uint64 id = 2;
+  int64 created = 3;
+  int64 updated = 4;
+  string creator = 5;
+  string operator = 6;
+  string name = 7;
+  string remark = 8;
+  string cover = 9;
+  string parent = 10; //沙盘
+  string panorama = 11; //全景图
+  string link = 12; //超链接
+  PositionInfo position = 13;
+  repeated string tags = 14;
+}
+
+message ReqAnchorAdd {
+  string name = 1;
+  string parent = 2;
+  string remark = 4;
+  string operator = 6;
+  repeated string tags = 9;
+}
+
+message ReqAnchorUpdate{
+  string uid = 1;
+  string name = 2;
+  string remark = 3;
+  string operator = 4;
+}
+
+message ReplyAnchorOne{
+  AnchorInfo info = 1;
+  ReplyStatus status = 2;
+}
+
+message ReplyAnchorList{
+  uint32 total = 1;
+  uint32 pageMax = 2;
+  uint32 pageNow = 3;
+  repeated AnchorInfo list = 4;
+  ReplyStatus status = 5;
+}
