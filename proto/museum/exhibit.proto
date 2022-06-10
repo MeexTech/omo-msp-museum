@@ -30,6 +30,7 @@ message ExhibitInfo {
   string entity = 11;
   repeated LocalInfo locals = 12;
   repeated SpecialInfo specials = 13;
+  repeated string tags = 14;
 }
 
 message SpecialInfo {
@@ -45,6 +46,7 @@ message ReqExhibitAdd {
   string operator = 4;
   string entity = 5;
   string sn = 6;
+  repeated string tags = 7;
 }
 
 message ReqExhibitLocals {

@@ -29,16 +29,18 @@ message AnchorInfo {
   string parent = 10; //沙盘
   string panorama = 11; //全景图
   string link = 12; //超链接
-  PositionInfo position = 13;
-  repeated string tags = 14;
+  string owner = 13;
+  PositionInfo position = 14;
+  repeated string tags = 15;
 }
 
 message ReqAnchorAdd {
   string name = 1;
   string parent = 2;
-  string remark = 4;
-  string operator = 6;
-  repeated string tags = 9;
+  string remark = 3;
+  string owner = 4;
+  string operator = 5;
+  repeated string tags = 6;
 }
 
 message ReqAnchorUpdate{

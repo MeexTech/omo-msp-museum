@@ -30,7 +30,7 @@ message LocalInfo{
 
 message RequestFilter {
   string owner = 1;
-  string key = 2;
+  string field = 2;
   string value = 3;
   uint32 page = 4;
   uint32 number = 5;
@@ -41,7 +41,7 @@ message RequestFilter {
 message RequestUpdate{
   string owner = 1;
   string uid = 2;
-  string key = 3;
+  string field = 3;
   string value = 4;
   string operator = 5;
   repeated string values = 6;

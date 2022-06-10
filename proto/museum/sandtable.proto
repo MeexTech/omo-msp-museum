@@ -33,6 +33,8 @@ message SandtableInfo {
   uint32 height = 13;
   string narrate = 14; //讲解音频
   string bgm = 15; //背景音乐
+  uint32 status = 16;
+  repeated string tags = 17;
 }
 
 message ReqSandtableAdd {
@@ -43,6 +45,7 @@ message ReqSandtableAdd {
   string background = 5;
   uint32 width = 6;
   uint32 height = 7;
+  repeated string tags = 8;
 }
 
 message ReqSandtableBase {
