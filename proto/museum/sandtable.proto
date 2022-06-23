@@ -73,7 +73,8 @@ message ReqSandtableBG {
 
 message ReqSandtablePath {
   string uid = 1;
-  repeated PathKeyInfo path = 2;
+  string operator = 2;
+  repeated PathKeyInfo path = 3;
 }
 
 message ReplySandtableInfo {

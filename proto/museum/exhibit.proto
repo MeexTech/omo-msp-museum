@@ -47,7 +47,8 @@ message ReqExhibitAdd {
   string operator = 4;
   string entity = 5;
   string sn = 6;
-  repeated string tags = 7;
+  Vector3 size = 7;
+  repeated string tags = 8;
 }
 
 message ReqExhibitLocals {
