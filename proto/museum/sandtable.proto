@@ -40,9 +40,10 @@ message SandtableInfo {
 }
 
 message PathKeyInfo {
-  float scale = 1;
-  Vector3 position = 2;
-  Vector3 rotation = 3;
+  string key = 1;
+  float scale = 2;
+  Vector3 position = 3;
+  Vector3 rotation = 4;
 }
 
 message ReqSandtableAdd {
