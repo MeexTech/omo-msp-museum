@@ -30,7 +30,7 @@ message AnchorInfo {
   string panorama = 11; //全景图
   string link = 12; //超链接
   string owner = 13;
-  PositionInfo position = 14;
+  Vector3 position = 14;
   repeated string tags = 15;
 }
 

@@ -15,6 +15,7 @@ service SandtableService {
   rpc UpdateBase(ReqSandtableBase) returns (ReplyInfo) {}
   rpc UpdateBackground(ReqSandtableBG) returns (ReplyInfo) {}
   rpc UpdateByFilter(RequestUpdate) returns (ReplyInfo) {}
+  rpc UpdatePath(ReqSandtablePath) returns (ReplyInfo) {}
 }
 
 message SandtableInfo {
@@ -35,6 +36,13 @@ message SandtableInfo {
   string bgm = 15; //背景音乐
   uint32 status = 16;
   repeated string tags = 17;
+  repeated PathKeyInfo path = 18;
+}
+
+message PathKeyInfo {
+  float scale = 1;
+  Vector3 position = 2;
+  Vector3 rotation = 3;
 }
 
 message ReqSandtableAdd {
@@ -61,6 +69,11 @@ message ReqSandtableBG {
   string operator = 3;
   uint32 width = 4;
   uint32 height = 5;
+}
+
+message ReqSandtablePath {
+  string uid = 1;
+  repeated PathKeyInfo path = 2;
 }
 
 message ReplySandtableInfo {

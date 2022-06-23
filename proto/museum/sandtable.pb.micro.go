@@ -43,6 +43,7 @@ type SandtableService interface {
 	UpdateBase(ctx context.Context, in *ReqSandtableBase, opts ...client.CallOption) (*ReplyInfo, error)
 	UpdateBackground(ctx context.Context, in *ReqSandtableBG, opts ...client.CallOption) (*ReplyInfo, error)
 	UpdateByFilter(ctx context.Context, in *RequestUpdate, opts ...client.CallOption) (*ReplyInfo, error)
+	UpdatePath(ctx context.Context, in *ReqSandtablePath, opts ...client.CallOption) (*ReplyInfo, error)
 }
 
 type sandtableService struct {
@@ -147,6 +148,16 @@ func (c *sandtableService) UpdateByFilter(ctx context.Context, in *RequestUpdate
 	return out, nil
 }
 
+func (c *sandtableService) UpdatePath(ctx context.Context, in *ReqSandtablePath, opts ...client.CallOption) (*ReplyInfo, error) {
+	req := c.c.NewRequest(c.name, "SandtableService.UpdatePath", in)
+	out := new(ReplyInfo)
+	err := c.c.Call(ctx, req, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // Server API for SandtableService service
 
 type SandtableServiceHandler interface {
@@ -159,6 +170,7 @@ type SandtableServiceHandler interface {
 	UpdateBase(context.Context, *ReqSandtableBase, *ReplyInfo) error
 	UpdateBackground(context.Context, *ReqSandtableBG, *ReplyInfo) error
 	UpdateByFilter(context.Context, *RequestUpdate, *ReplyInfo) error
+	UpdatePath(context.Context, *ReqSandtablePath, *ReplyInfo) error
 }
 
 func RegisterSandtableServiceHandler(s server.Server, hdlr SandtableServiceHandler, opts ...server.HandlerOption) error {
@@ -172,6 +184,7 @@ func RegisterSandtableServiceHandler(s server.Server, hdlr SandtableServiceHandl
 		UpdateBase(ctx context.Context, in *ReqSandtableBase, out *ReplyInfo) error
 		UpdateBackground(ctx context.Context, in *ReqSandtableBG, out *ReplyInfo) error
 		UpdateByFilter(ctx context.Context, in *RequestUpdate, out *ReplyInfo) error
+		UpdatePath(ctx context.Context, in *ReqSandtablePath, out *ReplyInfo) error
 	}
 	type SandtableService struct {
 		sandtableService
@@ -218,4 +231,8 @@ func (h *sandtableServiceHandler) UpdateBackground(ctx context.Context, in *ReqS
 
 func (h *sandtableServiceHandler) UpdateByFilter(ctx context.Context, in *RequestUpdate, out *ReplyInfo) error {
 	return h.SandtableServiceHandler.UpdateByFilter(ctx, in, out)
+}
+
+func (h *sandtableServiceHandler) UpdatePath(ctx context.Context, in *ReqSandtablePath, out *ReplyInfo) error {
+	return h.SandtableServiceHandler.UpdatePath(ctx, in, out)
 }

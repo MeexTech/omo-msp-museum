@@ -28,7 +28,7 @@ message BoothInfo {
   string owner = 9; //所属场景
   string parent = 10; //所属区域
   string exhibit = 11;
-  PositionInfo position = 12;
+  Vector3 position = 12;
 }
 
 message ReqBoothAdd {
