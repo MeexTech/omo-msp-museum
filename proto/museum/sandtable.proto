@@ -36,7 +36,14 @@ message SandtableInfo {
   string bgm = 15; //背景音乐
   uint32 status = 16;
   repeated string tags = 17;
-  repeated PathKeyInfo path = 18;
+  repeated PathInfo paths = 18;
+}
+
+message PathInfo {
+  string name = 1;
+  string color = 2;
+  string uid = 3;
+  repeated PathKeyInfo points = 4;
 }
 
 message PathKeyInfo {
@@ -75,7 +82,10 @@ message ReqSandtableBG {
 message ReqSandtablePath {
   string uid = 1;
   string operator = 2;
-  repeated PathKeyInfo path = 3;
+  string path = 3;
+  string name = 4;
+  string color = 5;
+  repeated PathKeyInfo points = 6;
 }
 
 message ReplySandtableInfo {
