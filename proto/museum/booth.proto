@@ -27,7 +27,7 @@ message BoothInfo {
   string remark = 8;
   string owner = 9; //所属场景
   string parent = 10; //所属区域
-  string exhibit = 11;
+  repeated string exhibits = 11;
   Vector3 position = 12;
 }
 
