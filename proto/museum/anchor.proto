@@ -32,6 +32,7 @@ message AnchorInfo {
   string owner = 13;
   Vector3 position = 14;
   repeated string tags = 15;
+  repeated string assets = 16;
 }
 
 message ReqAnchorAdd {
