@@ -27,6 +27,7 @@ message AreaInfo {
   string remark = 8;
   string owner = 9;
   string parent = 10;
+  string template = 11;
 }
 
 message ReqAreaAdd {
