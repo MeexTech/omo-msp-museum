@@ -29,6 +29,13 @@ message LocalInfo{
   string remark = 3;
 }
 
+message PlaceInfo{
+  string name = 1;
+  uint32 type = 2;
+  float lng = 3;
+  float lat = 4;
+}
+
 message RequestFilter {
   string owner = 1;
   string field = 2;
