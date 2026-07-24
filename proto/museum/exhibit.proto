@@ -29,6 +29,7 @@ message ExhibitInfo {
   string owner = 9; //所属场景
   string entity = 10;
   Vector3 size = 11;
+  uint32 touch = 17;
   repeated LocalInfo locals = 12;
   repeated SpecialInfo specials = 13;
   repeated string tags = 14;
